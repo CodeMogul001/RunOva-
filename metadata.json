@@ -1,0 +1,7 @@
+{
+  "name": "RunOva",
+  "description": "AI-powered autonomous business operating system built on NEAR Protocol. Your business. Your agents. Your rules.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
