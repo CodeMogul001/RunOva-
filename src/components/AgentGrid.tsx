@@ -36,7 +36,7 @@ export const AgentGrid: React.FC<AgentGridProps> = ({ onSelectAgent }) => {
   };
 
   return (
-    <section id="workforce" className="py-20 sm:py-28 bg-white border-b border-[#EAEAEA] overflow-hidden">
+    <section id="workforce" className="py-20 sm:py-28 bg-[#F6F4EE] border-b border-[#E5E0D3] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -46,14 +46,15 @@ export const AgentGrid: React.FC<AgentGridProps> = ({ onSelectAgent }) => {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-16"
         >
-          <div className="text-xs font-mono uppercase tracking-widest text-[#666666] mb-3">
-            SPECIALISED AGENTS
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E5E0D3] text-xs font-mono uppercase tracking-widest text-[#2C2C2C] mb-3 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-[#00EC97]" />
+            <span>SPECIALISED AI AGENTS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111111] leading-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#111111] leading-tight mb-5 font-display">
             Meet your new workforce.
           </h2>
-          <p className="text-base sm:text-lg text-[#666666] leading-relaxed">
-            A coordinated team of specialised AI agents working together to keep your business moving.
+          <p className="text-base sm:text-lg text-[#383838] leading-relaxed">
+            A coordinated team of specialised AI agents working together to keep your business moving within programmed rules.
           </p>
         </motion.div>
 
@@ -71,31 +72,31 @@ export const AgentGrid: React.FC<AgentGridProps> = ({ onSelectAgent }) => {
                 whileHover={{ y: -4, borderColor: '#111111' }}
                 whileTap={{ scale: 0.99 }}
                 onClick={() => onSelectAgent(agent)}
-                className="p-8 border border-[#EAEAEA] bg-white transition-colors cursor-pointer flex flex-col justify-between group"
+                className="p-8 border border-[#E5E0D3] bg-white transition-all rounded-3xl cursor-pointer flex flex-col justify-between group shadow-xs hover:shadow-md"
               >
                 <div>
                   <div className="flex items-center justify-between mb-8">
-                    <div className="w-10 h-10 border border-[#EAEAEA] bg-[#F7F7F7] group-hover:border-[#111111] group-hover:bg-[#111111] transition-colors flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-[#111111] group-hover:text-white transition-colors" />
+                    <div className="w-12 h-12 rounded-2xl border border-[#E5E0D3] bg-[#F6F4EE] group-hover:border-[#111111] group-hover:bg-[#111111] transition-colors flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-[#111111] group-hover:text-[#00EC97] transition-colors" />
                     </div>
-                    <span className="font-mono text-xs text-[#666666]">
+                    <span className="font-mono text-xs font-bold text-[#555555] bg-[#F6F4EE] px-2.5 py-1 rounded-full border border-[#E5E0D3]">
                       0{index + 1}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold tracking-tight text-[#111111] mb-2 flex items-center justify-between">
+                  <h3 className="text-xl font-bold tracking-tight text-[#111111] mb-2 flex items-center justify-between font-display">
                     <span>{agent.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#CCCCCC] group-hover:text-[#111111] transition-colors" />
+                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-[#111111] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </h3>
 
-                  <p className="text-sm text-[#666666] leading-relaxed mb-6">
+                  <p className="text-sm text-[#383838] leading-relaxed mb-6">
                     {agent.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#F7F7F7] flex items-center justify-between text-xs font-mono text-[#666666]">
-                  <span>Ceiling: {agent.maxAutonomyBudget}</span>
-                  <span className="group-hover:text-[#111111] transition-colors">
+                <div className="pt-4 border-t border-[#E5E0D3] flex items-center justify-between text-xs font-mono text-[#555555]">
+                  <span>Ceiling: <strong className="text-[#111111]">{agent.maxAutonomyBudget}</strong></span>
+                  <span className="group-hover:text-[#111111] font-semibold transition-colors flex items-center gap-1">
                     Inspect rules &rarr;
                   </span>
                 </div>

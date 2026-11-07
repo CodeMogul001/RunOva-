@@ -12,8 +12,8 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onOpenGetStarted, onOpenAgentModal }) => {
   const [visualMode, setVisualMode] = useState<'3d' | 'dashboard'>('3d');
 
-  const handleScrollToHowItWorks = () => {
-    const el = document.getElementById('how-it-works');
+  const handleScrollToNext = () => {
+    const el = document.getElementById('policy-simulator');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -26,7 +26,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenGetStarted, onOpenAgentModal }
   };
 
   return (
-    <section className="relative pt-12 pb-20 sm:pt-20 sm:pb-28 bg-white border-b border-[#EAEAEA] overflow-hidden">
+    <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-24 bg-[#F6F4EE] border-b border-[#E5E0D3] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Narrative Block */}
         <motion.div
@@ -34,12 +34,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenGetStarted, onOpenAgentModal }
           animate="animate"
           className="max-w-3xl mx-auto text-center mb-10 sm:mb-14"
         >
-          {/* Small introductory label */}
+          {/* Small introductory label with NEAR green pulse */}
           <motion.div
             variants={fadeInUp}
-            className="inline-block mb-4"
+            className="inline-flex items-center gap-2 mb-4 px-3.5 py-1.5 rounded-full bg-white border border-[#E5E0D3] shadow-2xs"
           >
-            <span className="text-xs font-mono font-semibold tracking-widest uppercase text-[#666666] px-3 py-1 bg-[#F7F7F7] border border-[#EAEAEA]">
+            <span className="w-2 h-2 rounded-full bg-[#00EC97] animate-pulse" />
+            <div className="w-4 h-4 rounded-full overflow-hidden bg-black shrink-0 relative">
+              <img
+                src="/assets/aistudio/1002255096_7163559e.jpg"
+                alt="RunOva"
+                className="absolute max-w-none w-[340%] h-[340%] object-cover pointer-events-none"
+                style={{ objectPosition: '14.5% 48.5%' }}
+              />
+            </div>
+            <span className="text-[11px] font-mono font-bold tracking-wider uppercase text-[#111111]">
               AI-POWERED BUSINESS OPERATING SYSTEM
             </span>
           </motion.div>
@@ -57,13 +66,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenGetStarted, onOpenAgentModal }
             Your rules.
           </motion.h1>
 
-          {/* Supporting description */}
+          {/* Supporting description with high contrast darkened text */}
           <motion.p
             variants={{
               initial: { opacity: 0, y: 16 },
               animate: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] } }
             }}
-            className="text-lg sm:text-xl text-[#666666] leading-relaxed max-w-2xl mx-auto mb-8 font-normal"
+            className="text-lg sm:text-xl text-[#383838] leading-relaxed max-w-2xl mx-auto mb-8 font-normal"
           >
             Meet the AI-powered operating system that helps businesses manage operations, serve customers, execute tasks and manage resources through intelligent AI agents.
           </motion.p>
@@ -80,19 +89,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenGetStarted, onOpenAgentModal }
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.98 }}
               onClick={onOpenGetStarted}
-              className="w-full sm:w-auto px-7 py-3 text-sm font-semibold bg-[#111111] text-white hover:bg-black transition-colors rounded-none flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold bg-[#111111] text-white hover:bg-black transition-colors rounded-full flex items-center justify-center gap-2 cursor-pointer shadow-xs group"
             >
-              Get started
-              <ArrowRight className="w-4 h-4" />
+              <span>Get started</span>
+              <ArrowRight className="w-4 h-4 text-[#00EC97] group-hover:translate-x-0.5 transition-transform" />
             </motion.button>
             <motion.button
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.98 }}
-              onClick={handleScrollToHowItWorks}
-              className="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-[#111111] bg-white border border-[#EAEAEA] hover:bg-[#F7F7F7] transition-colors rounded-none flex items-center justify-center gap-2 cursor-pointer"
+              onClick={handleScrollToNext}
+              className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold text-[#111111] bg-white border border-[#E5E0D3] hover:border-[#111111] hover:bg-[#FDFCF7] transition-colors rounded-full flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
             >
-              Explore how it works
-              <ChevronDown className="w-4 h-4 text-[#666666]" />
+              <span>Test Policy Simulator</span>
+              <ChevronDown className="w-4 h-4 text-[#00875A]" />
             </motion.button>
           </motion.div>
 
@@ -102,79 +111,63 @@ export const Hero: React.FC<HeroProps> = ({ onOpenGetStarted, onOpenAgentModal }
               initial: { opacity: 0 },
               animate: { opacity: 1, transition: { duration: 0.6, delay: 0.4 } }
             }}
-            className="text-xs font-mono text-[#666666] tracking-wide"
+            className="text-xs font-mono text-[#383838] tracking-wide flex items-center justify-center gap-2"
           >
-            Powered by AI. Built on NEAR Protocol.
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00EC97]" />
+            <span>Powered by AI. Built on NEAR Protocol Non-Custodial Infrastructure.</span>
           </motion.div>
         </motion.div>
 
         {/* View Switcher: 3D Autonomous Architecture vs Operating System Console */}
         <div className="max-w-6xl mx-auto mb-4 flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-1 border border-[#EAEAEA] p-1 bg-[#F7F7F7]">
+          <div className="flex items-center gap-1 border border-[#E5E0D3] p-1 bg-white rounded-full shadow-2xs">
             <button
               onClick={() => setVisualMode('3d')}
-              className={`px-3 py-1.5 text-xs font-mono flex items-center gap-2 transition-all cursor-pointer ${
+              className={`px-4 py-1.5 text-xs font-mono flex items-center gap-2 transition-all rounded-full cursor-pointer ${
                 visualMode === '3d'
                   ? 'bg-[#111111] text-white shadow-xs'
-                  : 'text-[#666666] hover:text-[#111111]'
+                  : 'text-[#383838] hover:text-[#111111]'
               }`}
             >
-              <Box className="w-3.5 h-3.5" />
-              <span>3D AUTONOMOUS FLEET (WEBGL)</span>
+              <Box className="w-3.5 h-3.5 text-[#00EC97]" />
+              <span className="font-semibold">3D ORBITAL ARCHITECTURE</span>
             </button>
             <button
               onClick={() => setVisualMode('dashboard')}
-              className={`px-3 py-1.5 text-xs font-mono flex items-center gap-2 transition-all cursor-pointer ${
+              className={`px-4 py-1.5 text-xs font-mono flex items-center gap-2 transition-all rounded-full cursor-pointer ${
                 visualMode === 'dashboard'
                   ? 'bg-[#111111] text-white shadow-xs'
-                  : 'text-[#666666] hover:text-[#111111]'
+                  : 'text-[#383838] hover:text-[#111111]'
               }`}
             >
-              <LayoutDashboard className="w-3.5 h-3.5" />
-              <span>OS CONSOLE PREVIEW</span>
+              <LayoutDashboard className="w-3.5 h-3.5 text-[#00EC97]" />
+              <span className="font-semibold">OS CONSOLE PREVIEW</span>
             </button>
           </div>
 
-          <div className="text-xs font-mono text-[#666666] hidden sm:flex items-center gap-2">
-            <span className="w-2 h-2 rounded-none bg-[#111111]" />
-            <span>INTERACTIVE REAL-TIME HARDWARE ACCELERATED VIEW</span>
+          <div className="text-xs font-mono text-[#555555] flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#00EC97] animate-pulse" />
+            <span className="hidden sm:inline">INTERACTIVE PROTOTYPE</span>
+            <span>·</span>
+            <span>NEAR TESTNET READY</span>
           </div>
         </div>
 
-        {/* Hero Visual Container with Smooth Transition */}
+        {/* Dynamic Visual Container */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          key={visualMode}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto"
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-6xl mx-auto relative"
         >
-          <AnimatePresence mode="wait">
-            {visualMode === '3d' ? (
-              <motion.div
-                key="3d-scene"
-                initial={{ opacity: 0, scale: 0.99 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.99 }}
-                transition={{ duration: 0.3 }}
-              >
-                <RunOva3DScene onSelectAgent={onOpenAgentModal} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="dashboard-view"
-                initial={{ opacity: 0, scale: 0.99 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.99 }}
-                transition={{ duration: 0.3 }}
-              >
-                <DashboardPreview onOpenAgentModal={onOpenAgentModal} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {visualMode === '3d' ? (
+            <RunOva3DScene onSelectAgent={onOpenAgentModal} />
+          ) : (
+            <DashboardPreview onOpenAgentModal={onOpenAgentModal} />
+          )}
         </motion.div>
       </div>
     </section>
   );
 };
-
-

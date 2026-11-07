@@ -26,7 +26,9 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
   const [selectedNode, setSelectedNode] = useState<string | null>('kernel');
   const [isAutoRotate, setIsAutoRotate] = useState<boolean>(true);
   const [explodedAmount, setExplodedAmount] = useState<number>(0);
-  const [isDockCollapsed, setIsDockCollapsed] = useState<boolean>(false);
+  const [isDockCollapsed, setIsDockCollapsed] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
   const [cameraMode, setCameraMode] = useState<'overview' | 'kernel' | 'agents' | 'iso'>('overview');
 
   // Mutable refs for Three.js animation loop without React re-renders
@@ -69,8 +71,8 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
 
     // 1. Scene Setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xFFFFFF);
-    scene.fog = new THREE.Fog(0xFFFFFF, 12, 32);
+    scene.background = new THREE.Color(0xF6F4EE);
+    scene.fog = new THREE.Fog(0xF6F4EE, 12, 32);
 
     // 2. Camera Setup
     const width = container.clientWidth;
@@ -449,8 +451,8 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
       return {
         title: 'RunOva Business Kernel',
         role: 'Central Autonomous Core',
-        detail: 'Executes verified business rules, deterministic budgets and NEAR smart contract governance.',
-        metric: '482 Tasks Coordinated Today'
+        detail: 'Executes policy business rules, deterministic budgets and NEAR smart contract governance.',
+        metric: 'Central Kernel · Sandbox Active'
       };
     }
     const found = AGENTS_DATA.find((a) => a.id === selectedNode);
@@ -473,75 +475,82 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
   const nodeInfo = getSelectedNodeInfo();
 
   return (
-    <div className={`relative w-full h-[620px] sm:h-[720px] bg-white border border-[#EAEAEA] select-none overflow-hidden ${className}`}>
+    <div className={`relative w-full h-[340px] sm:h-[480px] lg:h-[620px] bg-[#F6F4EE] border border-[#E5E0D3] select-none overflow-hidden rounded-3xl shadow-xs ${className}`}>
       {/* 3D WebGL Canvas Container */}
       <div ref={containerRef} className="absolute inset-0 cursor-grab active:cursor-grabbing w-full h-full" />
 
       {/* Top Left: 3D Scene HUD Tag */}
-      <div className="absolute top-5 left-5 z-20 pointer-events-none flex flex-col gap-1">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/95 border border-[#EAEAEA] text-xs font-mono font-bold text-[#111111] shadow-xs">
-          <Compass className="w-3.5 h-3.5 text-[#111111]" />
+      <div className="absolute top-3 left-3 sm:top-5 sm:left-5 z-20 pointer-events-none flex flex-col gap-1">
+        <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 bg-white/95 border border-[#E5E0D3] text-[11px] sm:text-xs font-mono font-bold text-[#111111] shadow-2xs rounded-full">
+          <span className="w-2 h-2 rounded-full bg-[#00EC97] animate-pulse" />
+          <div className="w-3.5 h-3.5 rounded-full overflow-hidden bg-black shrink-0 relative">
+            <img
+              src="/assets/aistudio/1002255096_7163559e.jpg"
+              alt="RunOva"
+              className="absolute max-w-none w-[340%] h-[340%] object-cover pointer-events-none"
+              style={{ objectPosition: '14.5% 48.5%' }}
+            />
+          </div>
           <span>RUNOVA 3D ORBITAL KERNEL</span>
         </div>
-        <div className="text-[11px] font-mono text-[#666666] bg-white/80 px-2 py-0.5 border border-[#EAEAEA] inline-block w-fit">
-          DRAG TO ORBIT · SCROLL TO ZOOM · CLICK NODES
+        <div className="hidden sm:inline-block text-[10px] font-mono text-[#383838] bg-white/80 px-2.5 py-0.5 border border-[#E5E0D3] rounded-full">
+          DRAG TO ORBIT · SCROLL TO ZOOM · CLICK SATELLITES
         </div>
       </div>
 
-      {/* Top Right: Node Quick Selector */}
-      <div className="absolute top-5 right-5 z-20 flex items-center gap-1.5">
+      {/* Top Right: Auto Rotate toggle */}
+      <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex items-center gap-1.5">
         <button
           onClick={() => setIsAutoRotate(!isAutoRotate)}
-          className={`px-3 py-1.5 text-xs font-mono border transition-colors flex items-center gap-1.5 cursor-pointer ${
+          className={`px-3 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs font-mono border transition-colors flex items-center gap-1.5 cursor-pointer rounded-full shadow-2xs ${
             isAutoRotate
               ? 'bg-[#111111] text-white border-[#111111]'
-              : 'bg-white text-[#111111] border-[#EAEAEA] hover:border-[#111111]'
+              : 'bg-white text-[#111111] border-[#E5E0D3] hover:border-[#111111]'
           }`}
           title="Toggle 3D auto rotation"
         >
-          <RotateCw className={`w-3.5 h-3.5 ${isAutoRotate ? 'animate-spin-slow' : ''}`} />
+          <RotateCw className={`w-3.5 h-3.5 text-[#00EC97] ${isAutoRotate ? 'animate-spin-slow' : ''}`} />
           <span className="hidden sm:inline">Auto-Rotate</span>
         </button>
       </div>
 
-      {/* Bottom Center: Consolidated Ergonomic 3D Control Dock */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-2xl">
+      {/* Bottom Center: Ergonomic 3D Control Dock */}
+      <div className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 w-[94%] max-w-xl">
         {/* Collapse / Expand Tab */}
         <div className="flex justify-center -mb-[1px]">
           <button
             onClick={() => setIsDockCollapsed(!isDockCollapsed)}
-            className="px-3 py-1 bg-white border border-[#EAEAEA] text-[11px] font-mono text-[#666666] hover:text-[#111111] flex items-center gap-1 shadow-xs cursor-pointer"
+            className="px-3.5 py-1 bg-white border border-[#E5E0D3] text-[10px] sm:text-[11px] font-mono text-[#383838] hover:text-[#111111] flex items-center gap-1.5 shadow-2xs cursor-pointer rounded-full mb-1"
           >
-            {isDockCollapsed ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-            <span>{isDockCollapsed ? 'Show 3D Viewport Controls' : 'Hide Controls'}</span>
+            {isDockCollapsed ? <ChevronUp className="w-3 h-3 text-[#00EC97]" /> : <ChevronDown className="w-3 h-3 text-[#00EC97]" />}
+            <span>{isDockCollapsed ? 'Controls' : 'Hide Controls'}</span>
           </button>
         </div>
 
         {/* Main Dock Container */}
         {!isDockCollapsed && (
-          <div className="bg-white border border-[#111111] p-4 shadow-lg animate-in fade-in duration-150 space-y-3.5">
+          <div className="bg-white border border-[#E5E0D3] p-3 sm:p-4 shadow-md animate-in fade-in duration-150 space-y-2.5 rounded-2xl">
             {/* Top row: Active Node Inspector */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-[#EAEAEA]">
+            <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#E5E0D3]">
               <div>
-                <div className="text-[10px] font-mono text-[#666666] uppercase tracking-wider">
-                  ACTIVE 3D SELECTION · {nodeInfo.role}
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#555555] uppercase tracking-wider">
+                  ACTIVE SELECTION · {nodeInfo.role}
                 </div>
-                <h4 className="text-sm font-bold text-[#111111] font-display">
+                <h4 className="text-xs sm:text-sm font-bold text-[#111111] font-display">
                   {nodeInfo.title}
                 </h4>
               </div>
               <div className="text-right">
-                <span className="text-xs font-mono font-semibold text-[#111111] bg-[#F7F7F7] px-2.5 py-1 border border-[#EAEAEA]">
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-[#00875A] bg-[#00EC97]/15 px-2.5 py-0.5 border border-[#00EC97]/30 rounded-full">
                   {nodeInfo.metric}
                 </span>
               </div>
             </div>
 
             {/* Bottom Row: Controls & Camera Presets */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
               {/* Camera Presets */}
-              <div className="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
-                <span className="text-[10px] font-mono text-[#666666] mr-1 hidden md:inline">VIEW:</span>
+              <div className="flex items-center gap-1 w-full sm:w-auto overflow-x-auto pb-0.5 sm:pb-0">
                 {[
                   { id: 'overview', label: 'Overview' },
                   { id: 'kernel', label: 'Kernel' },
@@ -551,10 +560,10 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
                   <button
                     key={preset.id}
                     onClick={() => handleCameraPreset(preset.id as any)}
-                    className={`px-2.5 py-1 text-xs font-mono transition-colors cursor-pointer ${
+                    className={`px-2.5 py-1 text-[10px] sm:text-xs font-mono transition-colors rounded-full cursor-pointer ${
                       cameraMode === preset.id
-                        ? 'bg-[#111111] text-white'
-                        : 'bg-[#F7F7F7] text-[#666666] hover:text-[#111111] border border-[#EAEAEA]'
+                        ? 'bg-[#111111] text-white shadow-2xs'
+                        : 'bg-[#F6F4EE] text-[#383838] hover:text-[#111111] border border-[#E5E0D3]'
                     }`}
                   >
                     {preset.label}
@@ -563,10 +572,8 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
               </div>
 
               {/* Exploded Architecture Slider */}
-              <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
-                <span className="text-[10px] font-mono text-[#666666] whitespace-nowrap">
-                  EXPLODED VIEW:
-                </span>
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-end text-[10px] sm:text-[11px] font-mono text-[#383838]">
+                <span className="whitespace-nowrap">EXPLODE:</span>
                 <input
                   type="range"
                   min="0"
@@ -574,10 +581,10 @@ export const RunOva3DScene: React.FC<RunOva3DSceneProps> = ({ onSelectAgent, cla
                   step="0.05"
                   value={explodedAmount}
                   onChange={(e) => setExplodedAmount(parseFloat(e.target.value))}
-                  className="w-24 sm:w-28 accent-[#111111] cursor-pointer"
+                  className="w-20 sm:w-24 accent-[#111111] cursor-pointer"
                   title="Separate 3D layers and orbits"
                 />
-                <span className="text-[11px] font-mono font-bold text-[#111111] w-8 text-right">
+                <span className="font-bold text-[#111111] w-7 text-right">
                   {Math.round(explodedAmount * 100)}%
                 </span>
               </div>

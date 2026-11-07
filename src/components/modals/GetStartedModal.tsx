@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Check, ArrowRight, ShieldCheck, Cpu } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AGENTS_DATA } from '../../data/agents';
+import { RunOvaLogo } from '../RunOvaLogo';
 
 interface GetStartedModalProps {
   isOpen: boolean;
@@ -72,7 +73,7 @@ export const GetStartedModal: React.FC<GetStartedModalProps> = ({ isOpen, onClos
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 text-[#666666] hover:text-[#111111] transition-colors focus:outline-none focus:ring-1 focus:ring-[#111111] cursor-pointer"
+          className="absolute top-5 right-5 p-2 text-[#666666] hover:text-[#111111] transition-colors focus:outline-none focus:ring-1 focus:ring-[#111111] cursor-pointer rounded-full hover:bg-[#F7F7F7]"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -81,6 +82,9 @@ export const GetStartedModal: React.FC<GetStartedModalProps> = ({ isOpen, onClos
         {!isComplete ? (
           <div>
             <div className="mb-6">
+              <div className="mb-3">
+                <RunOvaLogo variant="badge" size="sm" showTagline={true} />
+              </div>
               <div className="flex items-center gap-2 text-xs text-[#666666] mb-2 font-mono">
                 <span>STEP 0{step} OF 03</span>
                 <span>·</span>
@@ -228,7 +232,7 @@ export const GetStartedModal: React.FC<GetStartedModalProps> = ({ isOpen, onClos
                   <button
                     type="button"
                     onClick={() => setStep((s) => (s - 1) as 1 | 2)}
-                    className="px-4 py-2 text-xs font-medium text-[#111111] hover:bg-[#F7F7F7] border border-[#EAEAEA] transition-colors"
+                    className="px-5 py-2 text-xs font-medium text-[#111111] hover:bg-[#F7F7F7] border border-[#EAEAEA] transition-colors rounded-full cursor-pointer"
                   >
                     Back
                   </button>
@@ -239,7 +243,7 @@ export const GetStartedModal: React.FC<GetStartedModalProps> = ({ isOpen, onClos
                 <button
                   type="submit"
                   disabled={isSubmitting || (step === 1 && !businessName.trim())}
-                  className="px-5 py-2 text-xs font-medium bg-[#111111] text-white hover:bg-black transition-colors flex items-center gap-2 disabled:opacity-50"
+                  className="px-6 py-2.5 text-xs font-medium bg-[#111111] text-white hover:bg-black transition-colors flex items-center gap-2 disabled:opacity-50 rounded-full cursor-pointer shadow-xs"
                 >
                   {isSubmitting ? (
                     'Provisioning...'
@@ -256,8 +260,8 @@ export const GetStartedModal: React.FC<GetStartedModalProps> = ({ isOpen, onClos
           </div>
         ) : (
           <div className="py-4 text-center space-y-4">
-            <div className="w-12 h-12 mx-auto bg-[#111111] text-white flex items-center justify-center">
-              <Cpu className="w-6 h-6" />
+            <div className="flex justify-center">
+              <RunOvaLogo variant="icon" size="lg" />
             </div>
             <div>
               <h3 className="text-xl font-bold text-[#111111]">Environment Prepared</h3>
@@ -277,7 +281,7 @@ export const GetStartedModal: React.FC<GetStartedModalProps> = ({ isOpen, onClos
             <div className="pt-2">
               <button
                 onClick={handleReset}
-                className="w-full px-5 py-2.5 text-xs font-medium bg-[#111111] text-white hover:bg-black transition-colors"
+                className="w-full px-5 py-2.5 text-xs font-medium bg-[#111111] text-white hover:bg-black transition-colors rounded-full cursor-pointer shadow-xs"
               >
                 Enter Business Workspace Preview
               </button>

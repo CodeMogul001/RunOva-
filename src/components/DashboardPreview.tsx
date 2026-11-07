@@ -100,75 +100,85 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
   };
 
   return (
-    <div className="w-full bg-white border border-[#EAEAEA] text-[#111111] font-sans">
+    <div className="w-full bg-white border border-[#E5E0D3] text-[#111111] font-sans rounded-3xl overflow-hidden shadow-xs">
       {/* Top OS System Header Bar */}
-      <div className="px-4 py-3 border-b border-[#EAEAEA] bg-[#F7F7F7] flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div className="px-4 py-3 border-b border-[#E5E0D3] bg-[#F6F4EE] flex flex-wrap items-center justify-between gap-2 text-xs">
         <div className="flex items-center gap-3 font-mono">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-none bg-[#111111]" />
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded-md overflow-hidden bg-black shrink-0 relative">
+              <img
+                src="/assets/aistudio/1002255096_7163559e.jpg"
+                alt="RunOva"
+                className="absolute max-w-none w-[340%] h-[340%] object-cover pointer-events-none"
+                style={{ objectPosition: '14.5% 48.5%' }}
+              />
+            </div>
             <span className="font-bold tracking-tight text-[#111111]">RUNOVA OS</span>
           </div>
-          <span className="text-[#666666]">/</span>
-          <span className="text-[#666666] uppercase text-[11px]">WORKSPACE PREVIEW</span>
+          <span className="text-[#888888]">/</span>
+          <span className="text-[#383838] uppercase text-[11px] font-semibold">CONSOLE PREVIEW</span>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-mono text-[#666666]">
-          <span className="hidden sm:inline">NETWORK: NEAR PROTOCOL</span>
-          <span className="text-[#111111] font-medium flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#111111]" />
-            POLICY ENFORCER ACTIVE
+        <div className="flex items-center gap-3 text-xs font-mono">
+          <span className="hidden sm:inline text-[#555555]">NETWORK: NEAR TESTNET</span>
+          <span className="text-[#00875A] font-semibold flex items-center gap-1.5 bg-[#00EC97]/15 px-2.5 py-0.5 rounded-full border border-[#00EC97]/30 text-[11px]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00EC97] animate-pulse" />
+            INTERACTIVE DEMO SANDBOX
           </span>
         </div>
       </div>
 
       {/* KPI Performance Summary Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 border-b border-[#EAEAEA] divide-y md:divide-y-0 md:divide-x divide-[#EAEAEA]">
+      <div className="grid grid-cols-2 md:grid-cols-4 border-b border-[#E5E0D3] divide-y md:divide-y-0 md:divide-x divide-[#E5E0D3]">
         <div className="p-4 sm:p-5">
-          <div className="text-[11px] font-mono uppercase text-[#666666] tracking-wider mb-1">
-            Monthly Operations
+          <div className="text-[11px] font-mono uppercase text-[#555555] tracking-wider mb-1 flex items-center justify-between">
+            <span>Simulated Volume</span>
+            <span className="text-[9px] px-1.5 py-0.2 bg-[#F6F4EE] rounded text-[#383838] border border-[#E5E0D3]">DEMO</span>
           </div>
           <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-[#111111]">
             $142,850
           </div>
-          <div className="text-[11px] text-[#666666] mt-1 flex items-center gap-1">
-            <TrendingUp className="w-3 h-3 text-[#111111]" />
-            <span>Autonomous volume</span>
+          <div className="text-[11px] text-[#383838] mt-1 flex items-center gap-1">
+            <TrendingUp className="w-3 h-3 text-[#00875A]" />
+            <span>Illustrative benchmark</span>
           </div>
         </div>
 
         <div className="p-4 sm:p-5">
-          <div className="text-[11px] font-mono uppercase text-[#666666] tracking-wider mb-1">
-            Autonomous Tasks
+          <div className="text-[11px] font-mono uppercase text-[#555555] tracking-wider mb-1 flex items-center justify-between">
+            <span>Demo Test Suite</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.2 bg-[#00EC97]/20 text-[#00875A] rounded border border-[#00EC97]/30">SANDBOX</span>
           </div>
-          <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-[#111111]">
-            482
+          <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-[#111111] flex items-baseline gap-1.5">
+            <span>28 Tests</span>
+            <span className="text-xs text-[#555555] font-normal font-mono">(simulated)</span>
           </div>
-          <div className="text-[11px] text-[#666666] mt-1">
-            <span className="text-[#111111] font-medium">99.4%</span> policy compliant
+          <div className="text-[11px] text-[#383838] mt-1 font-mono">
+            <span className="text-[#00875A] font-semibold">100%</span> pass rate in demo sandbox
           </div>
         </div>
 
         <div className="p-4 sm:p-5">
-          <div className="text-[11px] font-mono uppercase text-[#666666] tracking-wider mb-1">
+          <div className="text-[11px] font-mono uppercase text-[#555555] tracking-wider mb-1">
             Active Workforce
           </div>
           <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-[#111111]">
             6 Agents
           </div>
-          <div className="text-[11px] text-[#666666] mt-1">
+          <div className="text-[11px] text-[#383838] mt-1">
             Coordinated via central kernel
           </div>
         </div>
 
         <div className="p-4 sm:p-5">
-          <div className="text-[11px] font-mono uppercase text-[#666666] tracking-wider mb-1">
-            Pending Actions
+          <div className="text-[11px] font-mono uppercase text-[#555555] tracking-wider mb-1">
+            Approval Queue
           </div>
           <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-[#111111]">
-            {approval.status === 'pending' ? '1 Request' : '0 Pending'}
+            {approval.status === 'pending' ? '1 Demo Request' : '0 Pending'}
           </div>
-          <div className="text-[11px] text-[#666666] mt-1">
-            {approval.status === 'pending' ? 'Requires owner approval' : 'All policies cleared'}
+          <div className="text-[11px] text-[#383838] mt-1">
+            {approval.status === 'pending' ? 'Test interactive approve below' : 'Cleared in simulation'}
           </div>
         </div>
       </div>
@@ -277,7 +287,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
                         whileTap={{ scale: 0.98 }}
                         type="button"
                         onClick={handleApprove}
-                        className="px-4 py-2 text-xs font-medium bg-[#111111] text-white hover:bg-black transition-colors flex items-center gap-1.5 cursor-pointer"
+                        className="px-5 py-2 text-xs font-medium bg-[#111111] text-white hover:bg-black transition-colors rounded-full flex items-center gap-1.5 cursor-pointer shadow-xs"
                       >
                         <Check className="w-3.5 h-3.5" />
                         Approve & Execute via NEAR
@@ -287,7 +297,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
                         whileTap={{ scale: 0.98 }}
                         type="button"
                         onClick={handleDecline}
-                        className="px-4 py-2 text-xs font-medium text-[#111111] border border-[#EAEAEA] hover:bg-[#F7F7F7] transition-colors flex items-center gap-1.5 cursor-pointer"
+                        className="px-4 py-2 text-xs font-medium text-[#111111] border border-[#EAEAEA] hover:bg-[#F7F7F7] transition-colors rounded-full flex items-center gap-1.5 cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                         Decline
@@ -304,17 +314,20 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
                     className="py-3 flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[#111111] text-white flex items-center justify-center font-bold">
+                      <div className="w-8 h-8 bg-[#111111] text-white flex items-center justify-center font-bold rounded-full">
                         {approval.status === 'approved' ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-[#111111]">
-                          {approval.status === 'approved'
-                            ? 'Transaction Signed & Broadcast to NEAR'
-                            : 'Transaction Declined by Owner'}
+                        <div className="text-xs font-bold text-[#111111] flex items-center gap-1.5">
+                          <span>
+                            {approval.status === 'approved'
+                              ? 'Simulated Signature Broadcast (NEAR Testnet Demo)'
+                              : 'Transaction Declined in Demo Sandbox'}
+                          </span>
+                          <span className="text-[10px] font-mono text-[#00875A] bg-[#00EC97]/15 px-2 py-0.2 rounded">DEMO</span>
                         </div>
-                        <div className="text-[11px] font-mono text-[#666666]">
-                          PO-8842 · Recipient: {approval.recipient} · {approval.amount}
+                        <div className="text-[11px] font-mono text-[#383838]">
+                          PO-8842 · Recipient: {approval.recipient} · {approval.amount} · Sandbox Gas: &lt;0.001 NEAR
                         </div>
                       </div>
                     </div>
@@ -322,7 +335,7 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleResetApproval}
-                      className="p-1.5 text-xs text-[#666666] hover:text-[#111111] border border-[#EAEAEA] flex items-center gap-1 font-mono cursor-pointer"
+                      className="px-3 py-1.5 text-xs text-[#666666] hover:text-[#111111] border border-[#EAEAEA] rounded-full flex items-center gap-1.5 font-mono cursor-pointer"
                       title="Reset preview"
                     >
                       <RefreshCw className="w-3 h-3" />
@@ -440,15 +453,15 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
               <span className="text-xs font-semibold text-[#111111] uppercase tracking-wider font-mono">
                 Recent Operations Feed
               </span>
-              <div className="flex gap-1 text-[10px] font-mono">
+              <div className="flex gap-1 text-[10px] font-mono bg-[#F7F7F7] p-0.5 border border-[#EAEAEA] rounded-full">
                 {(['all', 'finance', 'procurement', 'ops'] as const).map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-1.5 py-0.5 uppercase transition-all duration-150 cursor-pointer ${
+                    className={`px-2.5 py-0.5 uppercase transition-all duration-150 cursor-pointer rounded-full ${
                       activeTab === tab
                         ? 'bg-[#111111] text-white shadow-xs'
-                        : 'text-[#666666] hover:text-[#111111] bg-[#F7F7F7]'
+                        : 'text-[#666666] hover:text-[#111111]'
                     }`}
                   >
                     {tab}
@@ -496,8 +509,9 @@ export const DashboardPreview: React.FC<DashboardPreviewProps> = ({ onOpenAgentM
       </div>
 
       {/* Product preview disclosure notice */}
-      <div className="px-4 py-2.5 border-t border-[#EAEAEA] bg-[#F7F7F7] text-center text-[11px] font-mono text-[#666666]">
-        ILLUSTRATIVE PRODUCT PREVIEW · RUNOVA AUTONOMOUS PROTOCOL SPECIFICATION
+      <div className="px-4 py-2.5 border-t border-[#E5E0D3] bg-[#F6F4EE] text-center text-[11px] font-mono text-[#383838] flex items-center justify-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#00EC97]" />
+        <span>INTERACTIVE DEMO SANDBOX · ALL METRICS &amp; WORKFLOWS ARE SIMULATED FOR PREVIEW</span>
       </div>
     </div>
   );
